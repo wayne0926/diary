@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # 作者：魏然
-# 更新：2020/10/17 22：18
+# 更新：2020/10/17 22：26
 # 引入模块
 import time
 # 定义系统时间变量
@@ -17,7 +17,7 @@ thing = input('做了啥事？')
 # 询问心情
 mood = input('心情如何？')
 # 汇总所有内容
-out = '>>>> ' + time + '   ' + place + '   ' + weather + ' <<<<' + '\n' + thing + '，' + '感觉' + mood + '\n' + '\n     >>>' + name + '<<<' + '\n'
+out = '===== ' + time + '   ' + place + '   ' + weather + ' =====' + '\n' + thing + '，' + '感觉' + mood + '\n' + '\n     ===>' + name + '<===' + '\n'
 # 将所有信息汇入表
 oul = [time, place, name, thing, mood]
 # 依次打印(列表)
