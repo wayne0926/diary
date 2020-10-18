@@ -4,33 +4,48 @@
 # 更新：2020/10/17 22：26
 # 引入模块
 import time
+import requests
+# 位置，天气赋值
+playload = {'key': '91feef17aa2cd875a61f7520dd30207a'}
+pl = requests.get('https://restapi.amap.com/v3/ip', params=playload)
+re = pl.json()['adcode']
+playload1 = {'city': re, 'key': '91feef17aa2cd875a61f7520dd30207a', 'extensions': 'base'}
+we = requests.get('https://restapi.amap.com/v3/weather/weatherInfo', params=playload1)
+# print(we.json())
+rew = we.json()['lives'][0]['city']
+weas = we.json()['lives'][0]['weather']
+# print(rew)
+# print(weas)
+
 # 定义系统时间变量
 time = time.strftime("%Y年%m月%d日 %H:%M", time.localtime())
 # 询问名字
 name = input('鼎鼎大名：')
 # 询问天气
-weather = input('天气如何？')
+# weather = input('天气如何？')
 # 询问地点
-place = input('我在：')
+# place = input('我在：')
 # 询问时间
 thing = input('做了啥事？')
 # 询问心情
 mood = input('心情如何？')
 # 汇总所有内容
-out = '===== ' + time + '   ' + place + '   ' + weather + ' =====' + '\n' + thing + '，' + '感觉' + mood + '\n' + '\n    ===>' + name + '<===' + '\n'
+out = '===== ' + time + '   ' + rew + '   ' + weas + ' =====' + '\n' + thing + '，' + '感觉' + mood + '\n' + '\n    ===>' + name + '<===' + '\n'
 # 将所有信息汇入表
-oul = [time, place, name, thing, mood]
+oul = [time, name, thing, mood]
 # 依次打印(列表)
 print('==============================')
 print('时间：' + oul[0])
 print('------------------------------')
-print('地点：' + oul[1])
+print('地点：' + rew)
 print('------------------------------')
-print('人物：' + oul[2])
+print('人物：' + oul[1])
 print('------------------------------')
-print('事件：' + oul[3])
+print('事件：' + oul[2])
 print('------------------------------')
-print('心情：' + oul[4])
+print('天气：' + weas)
+print('------------------------------')
+print('心情：' + oul[3])
 print('==============================')
 # 新建(打开)文件
 f = open('diary.txt', mode='a')
