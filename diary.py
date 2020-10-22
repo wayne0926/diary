@@ -41,9 +41,13 @@ else:
 
 # 获取系统时间然后赋值给“time”
 # time = time.strftime("%Y年%m月%d日丨%A丨%H:%M", time.localtime())
+# 设置获取方式（NTP）
 client = ntplib.NTPClient()
+# 获取时间值
 response = client.request('ntp.aliyun.com')
+# 格式化时间戳
 qqq = datetime.datetime.fromtimestamp(response.tx_time)
+# 进一步格式化
 time = qqq.strftime("%Y年%m月%d日丨%A丨%H:%M")
 
 # 询问名字
