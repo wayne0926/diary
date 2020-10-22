@@ -6,6 +6,8 @@
 # 引入模块
 import time
 import requests
+import ntplib
+import datetime
 # 位置，天气，时间赋值
 # 设置高德API秘钥
 p = {'key': '91feef17aa2cd875a61f7520dd30207a'}
@@ -38,8 +40,11 @@ else:
     wea = we + '丨' + tem
 
 # 获取系统时间然后赋值给“time”
-time = time.strftime("%Y年%m月%d日丨%A丨%H:%M", time.localtime())
-
+# time = time.strftime("%Y年%m月%d日丨%A丨%H:%M", time.localtime())
+client = ntplib.NTPClient()
+response = client.request('ntp.aliyun.com')
+qqq = datetime.datetime.fromtimestamp(response.tx_time)
+time = qqq.strftime("%Y年%m月%d日丨%A丨%H:%M")
 
 # 询问名字
 name = input('鼎鼎大名：')
