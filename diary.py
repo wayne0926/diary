@@ -8,6 +8,8 @@ import time
 import requests
 import ntplib
 import datetime
+import codecs
+import os
 # 位置，天气，时间赋值
 # 设置高德API秘钥
 p = {'key': '91feef17aa2cd875a61f7520dd30207a'}
@@ -75,7 +77,7 @@ print('----------------------------------------------------------------------')
 print('心情：' + oul[5])
 print('======================================================================')
 # 新建(打开)文件
-f = open('diary.txt', mode='a')
+f = codecs.open('diary.txt', mode='a', encoding='utf-8')
 # 写入(追加)文件
 f.write(out)
 # 关闭文件
@@ -88,4 +90,4 @@ print("\033[1m完成：" + "已将文本输出在程序目录下的diary.txt")
 e = input('=============>回车保存退出<=============')
 # 判断并退出
 if e == '':
-    exit
+    os._exit
