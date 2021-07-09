@@ -8,25 +8,25 @@ import time
 import sys
 import os
 import datetime
+import codecs
 import requests
 import ntplib
-import codecs
 # 位置，天气，时间赋值
 # 设置高德API秘钥
 p = {'key': '91feef17aa2cd875a61f7520dd30207a'}
 # 获取API返回的JSON并取回“status”（是否成功（值为0或1,0表示失败；1表示成功）），然后赋值给“t”
-t = requests.get('https://restapi.amap.com/v3/ip', params=p).json()['status']
+succees = requests.get('https://restapi.amap.com/v3/ip', params=p).json()['status']
 # 判断t是否不等于“1”（不成功）
-if t != '1':
+if succees != '1':
     # 向后传递失败信息（“0”）
-    t = '0'
+    succees = '0'
 # 若“t”不是“1”（不成功）
 else:
     # GET获取API返回的JSON并取回“adcode”（高德位置编码），然后赋值给“pCode”
     pCode = requests.get('https://restapi.amap.com/v3/ip',
                          params=p).json()['adcode']
 # 判断是否成功（是否为“1”），若不成功（不等于“1”）
-if t != '1':
+if succees != '1':
     # 手动输入信息（天气+位置）
     place = input('天气：')
     wea = input('位置：')
